@@ -1,0 +1,30 @@
+ruby OFF rails
+==============
+This showcase has 4 components:
+1. Some rack middleware
+  (1) nothing.ru, a rack middleware do nothing
+  (2) calc_time.ru, add response time to HTTP body
+  (3) method_override.ru, alter HTTP method
+
+  Before running, run "gem install rack" to install rack.
+  Run "rackup nothing.ru"
+  See http://localhost:9292 for result.
+  Replace nothing.ru with other two file name and navigate the same URL.
+2. infinity.rb, a simple sinatra program can process 3 URL
+   Before running, run "gem install sinatra" to install sinatra
+   Run "ruby infinity.rb"
+   See http://localhost:4567 , http://localhost:4567/version
+            and http://localhost:4567/version/last for result.
+  
+3. A sinatra+sequel program, a Create-Update-Read application.
+   Before running, run "gem install sequel sqlite3-ruby" to install sequel and sqlite3 database driver.
+   Run "ruby notes.rb".
+   See http://localhost:4567/notes for result.
+4. A sinatra+rails application, show speed difference of Rails MVC, Rails Metal and sintra.
+   Before running, run "gem install thin" to install thin, 
+     "gem install rails --source http://gems.rubyonrails.org" to install Rails 2.3.
+   Run "thin start" to start rails and "thin -R app/metal/hello.rb" to start sinatra standalone.
+   See http://localhost:3000/hello/sinatra for traditional rails response;
+       http://localhost:3000/sinatra for sinatra running in rails metal or standalone.
+
+   My benchmark result is: sinatra running standalone is 3 times of it running in rails metal.
