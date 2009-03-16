@@ -25,6 +25,6 @@ This showcase has 4 components:
      "gem install rails --source http://gems.rubyonrails.org" to install Rails 2.3.
    Run "thin start" to start rails and "thin -R app/metal/hello.rb" to start sinatra standalone.
    See http://localhost:3000/hello/sinatra for traditional rails response;
-       http://localhost:3000/sinatra for sinatra running in rails metal or standalone.
+       http://localhost:3000/sinatra for sinatra running under rails metal or standalone.
 
-   My benchmark result is: sinatra running standalone is 3 times of it running in rails metal.
+   My benchmark result is: sinatra running standalone is 3 times of it running under rails metal.
