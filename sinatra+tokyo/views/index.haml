@@ -1,0 +1,16 @@
+%div.body
+  %table{:width => "100%", :style => "border-collapse: collapse", :border => 1}
+    %thead
+      %tr 
+        %td title
+        %td &nbsp;
+        %td &nbsp;
+    %tbody
+      - @notes.each do |note|
+        %tr
+          %td= h note['title']
+          %td 
+            %a{:href => "/notes/#{note[:pk].split('_')[1]}"} show
+          %td
+            %a{:href => "/notes/#{note[:pk].split('_')[1]}/edit"} edit
+  %a{:href => '/notes/new'} new note

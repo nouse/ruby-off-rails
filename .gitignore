@@ -1,3 +1,4 @@
 sinatra+sequel/notes.db
 sinatra+rails/tmp
 sinatra+rails/log
+*.swp
