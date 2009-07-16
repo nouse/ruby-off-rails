@@ -1,6 +1,8 @@
+# install tokyo tyrant and run "ttserver data.tct" anywhere
 require 'rubygems'
 require 'sinatra'
-require 'rufus/edo/ntyrant'
+require 'haml'
+require 'rufus/tokyo/tyrant'
 
 helpers do
   def h(string)
@@ -10,7 +12,7 @@ helpers do
 end
 
 configure do
-  DB = Rufus::Edo::NetTyrantTable.new('localhost', 1978)
+  DB = Rufus::Tokyo::TyrantTable.new('localhost', 1978)
 end
 
 get '/notes' do
@@ -40,6 +42,6 @@ put '/notes/:id' do
 end
 
 post '/notes' do
-  DB['blogs_'+DB.genuid] = {'title' => params[:title], 'body' => params[:body], 'table' => 'blogs'}
+  DB['blogs_'+DB.genuid.to_s] = {'title' => params[:title], 'body' => params[:body], 'table' => 'blogs'}
   redirect "/notes"
 end

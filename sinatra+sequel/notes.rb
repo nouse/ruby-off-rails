@@ -1,6 +1,8 @@
+# run gem install sinatra sequel haml amalgalite first
 require 'rubygems'
 require 'sinatra'
 require 'sequel'
+require 'haml'
 
 helpers do
   def h(string)
@@ -10,9 +12,10 @@ helpers do
 end
 
 configure do
-  Sequel.connect('sqlite://notes.db')
+  Sequel.connect('amalgalite://notes.db')
 
   class Note < Sequel::Model
+    plugin :schema
     unless table_exists?
       set_schema do
         primary_key :id
