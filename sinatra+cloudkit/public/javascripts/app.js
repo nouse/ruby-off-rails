@@ -18,7 +18,6 @@
       partial('/templates/index', function(html) {
         $('#main').html(html);
         this.each(db.collection('tasks').all(), function(i, task) {
-          this.log('task', task.json());
           this.partial('/templates/task', {task: task}, function(task_html) {
             $(task_html).data('task', task).prependTo('#tasks');
           });
@@ -58,7 +57,6 @@
     }});
     
     bind('task-toggle', function(e, data) { with(this) {
-      this.log('data', data)
       var $task = data.$task;
       this.task = db.collection('tasks').get($task.attr('id'));
       this.task.attr('completed', function() { return (this == true ? false : true); });
