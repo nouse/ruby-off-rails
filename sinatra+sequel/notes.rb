@@ -12,50 +12,54 @@ helpers do
 end
 
 configure do
-  Sequel.connect('amalgalite://notes.db')
-
+  DB = Sequel.connect('amalgalite://notes.db')
+  DB.create_table?(:notes) do
+    primary_key :id
+    text :title
+    text :body
+  end
   class Note < Sequel::Model
-    plugin :schema
-    unless table_exists?
-      set_schema do
-        primary_key :id
-        text :title
-        text :body
-      end
-      create_table
-    end
   end
 end
 
 get '/notes' do
-  haml :index, :locals => {:notes => Note.all}
+  @notes = Note.all
+  haml :index
 end
 
-get '/notes/:id' do
-  pass if params[:id] == 'new'
-  haml(:show, :locals => {:note => Note[:id => params[:id]]}) +
-    haml(:back_to_top)
+get '/notes/:id' do |id|
+  pass if id == 'new'
+  @note = Note[:id => id]
+  haml(:show) + haml(:back_to_top)
 end
 
 get '/notes/new' do
-  haml(:new, :locals => {:note => Note.new})+haml(:back_to_top)
+  @note = Note.new
+  haml(:new)+haml(:back_to_top)
 end
 
-get '/notes/:id/edit' do
-  haml(:edit, :locals => {:note => Note[:id => params[:id]]}) +
+get '/notes/:id/edit' do |id|
+  @note = Note[:id => id]
+  haml(:edit) +
     haml(:back_to_top)
 end
 
-put '/notes/:id' do
-  note = Note.find(:id => params[:id])
+put '/notes/:id' do |id|
+  note = Note.find(:id => id)
   note.update(:title => params[:title], :body => params[:body])
   note.save
-  redirect "/notes/#{params[:id]}"
+  redirect "/notes/#{id}"
 end
 
 post '/notes' do
   note = Note.new(:title => params[:title], :body => params[:body])
   note.save
+  redirect "/notes"
+end
+
+delete '/notes/:id' do |id|
+  note = Note.find(:id => id)
+  note.destroy
   redirect "/notes"
 end
 
@@ -74,7 +78,7 @@ __END__
         %td &nbsp;
         %td &nbsp;
     %tbody
-      - notes.each do |note|
+      - @notes.each do |note|
         %tr
           %td= h note.title
           %td 
@@ -83,24 +87,26 @@ __END__
             %a{:href => "/notes/#{note.id}/edit"} edit
   %a{:href => '/notes/new'} new note
 @@ show
-%h3= h note[:title]
-%div= note[:body]
+%h3= h @note[:title]
+%div= @note[:body]
 @@ edit
-%form{:action => "/notes/#{note.id}", :method => "post"}
+%form{:action => "/notes/#{@note.id}", :method => "post"}
   %input{ :type => "hidden", :name => "_method", :value => "put"}
-  = haml :form, :locals => {:note => note}
-</form>
+  = haml :form
+%form{:action => "/notes/#{@note.id}", :method => "post"}
+  %input{ :type => "hidden", :name => "_method", :value => "delete"}
+  %input{ :type => "submit", :value => 'delete'}/
 @@ new
 %form{:action => "/notes", :method => "post"}
-  = haml :form, :locals => {:note => note}
+  = haml :form
 @@ form
 %label{:for=>"title"} Description
 %br
-%input{:name=>"title", :value=>h(note.title), :size => 50}
+%input{:name=>"title", :value=>h(@note.title), :size => 50}
 %br
 %label{:for => "body"}Content
 %br
-%textarea{:name => "body", :cols => 30, :rows => 10}= note.body
+%textarea{:name => "body", :cols => 30, :rows => 10}= @note.body
 %br
 %input{:type => "submit"}
 @@ back_to_top
