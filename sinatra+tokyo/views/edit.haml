@@ -1,3 +1,0 @@
-%form{:action => "/notes/#{h(params[:id])}", :method => "post"}
-  %input{ :type => "hidden", :name => "_method", :value => "put"}
-  = haml :form, :locals => {:note => @note}

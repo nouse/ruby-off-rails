@@ -1,4 +1,0 @@
-%li{ :class => "task &lt;%=(task.attr('completed') ? 'completed' : '')%&gt;", :id => "<%=task.attr('id')%>" }
-  <input type="checkbox" &lt;%= (task.attr('completed') ? 'checked="checked"' : '') %&gt; />
-  %a.entry{ :href => "#/tasks/&lt;%=task.attr('id')%&gt;" }
-    <%= task.attr('entry')%>
