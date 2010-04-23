@@ -35,31 +35,28 @@ end
 
 get '/notes/new' do
   @note = Note.new
-  haml(:new)+haml(:back_to_top)
+  haml(:new) + haml(:back_to_top)
 end
 
 get '/notes/:id/edit' do |id|
   @note = Note[:id => id]
-  haml(:edit) +
-    haml(:back_to_top)
+  haml(:edit) + haml(:back_to_top)
 end
 
 put '/notes/:id' do |id|
-  note = Note.find(:id => id)
+  note = Note[:id => id]
   note.update(:title => params[:title], :body => params[:body])
-  note.save
   redirect "/notes/#{id}"
 end
 
 post '/notes' do
-  note = Note.new(:title => params[:title], :body => params[:body])
-  note.save
+  @note = Note.create(:title => params[:title], :body => params[:body])
   redirect "/notes"
 end
 
 delete '/notes/:id' do |id|
-  note = Note.find(:id => id)
-  note.destroy
+  @note = Note[:id => id]
+  @note.destroy
   redirect "/notes"
 end
 
@@ -91,11 +88,11 @@ __END__
 %div= @note[:body]
 @@ edit
 %form{:action => "/notes/#{@note.id}", :method => "post"}
-  %input{ :type => "hidden", :name => "_method", :value => "put"}
+  %input{:type => "hidden", :name => "_method", :value => "put"}
   = haml :form
 %form{:action => "/notes/#{@note.id}", :method => "post"}
-  %input{ :type => "hidden", :name => "_method", :value => "delete"}
-  %input{ :type => "submit", :value => 'delete'}/
+  %input{:type => "hidden", :name => "_method", :value => "delete"}
+  %input{:type => "submit", :value => 'delete'}/
 @@ new
 %form{:action => "/notes", :method => "post"}
   = haml :form
@@ -111,4 +108,4 @@ __END__
 %input{:type => "submit"}
 @@ back_to_top
 %div
-  %a{ :href => "/notes"} Back to Top
+  %a{:href => "/notes"} Back to Top
