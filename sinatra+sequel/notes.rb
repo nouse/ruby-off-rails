@@ -97,11 +97,11 @@ __END__
 %form{:action => "/notes", :method => "post"}
   = haml :form
 @@ form
-%label{:for=>"title"} Description
+%label{:for => "title"} Description
 %br
-%input{:name=>"title", :value=>h(@note.title), :size => 50}
+%input{:name => "title", :value => h(@note.title), :size => 50}
 %br
-%label{:for => "body"}Content
+%label{:for => "body"} Content
 %br
 %textarea{:name => "body", :cols => 30, :rows => 10}= @note.body
 %br
