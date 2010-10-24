@@ -1,0 +1,7 @@
+%form{:action => "/notes/#{@note.id}", :method => "post"}
+  %input{:type => "hidden", :name => "_method", :value => "put"}
+  = haml :form
+%form{:action => "/notes/#{@note.id}", :method => "post"}
+  %input{:type => "hidden", :name => "_method", :value => "delete"}
+  %input{:type => "submit", :value => 'delete'}/
+= haml :back_to_top

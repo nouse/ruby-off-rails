@@ -1,4 +1,5 @@
-$LOAD_PATH << ::File.dirname(__FILE__)
-require 'notes'
+require './notes'
 
-run Sinatra::Application
+use Rack::MethodOverride
+use Rack::CommonLogger
+run Notes

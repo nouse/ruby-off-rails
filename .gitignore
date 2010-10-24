@@ -1,4 +1,3 @@
-sinatra+sequel/notes.db
-sinatra+rails/tmp
-sinatra+rails/log
+/sinatra+sequel/notes.db
 *.swp
+.rvmrc
