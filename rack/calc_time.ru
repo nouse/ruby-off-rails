@@ -6,7 +6,7 @@ class CalcTime
   def call(env)
     now = Time.now
     status, headers, body = @app.call(env)
-    string = "Time elapsed: #{Time.now-now}\n"
+    string = "<p>Time elapsed: #{Time.now-now}</p>"
     response = body.collect{|e| e}.unshift(string)
     [status, headers, response]
   end

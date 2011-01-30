@@ -1,9 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 
-use Rack::CommonLogger
-use Rack::ShowExceptions
-
 get '/' do
   "Hello, Sinatra"
 end
