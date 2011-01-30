@@ -10,10 +10,12 @@ First is some rack middlewares, including:
 
 Before start, execute "gem install rack" to install rack.
 Then run "rackup nothing.ru" and goto <http://localhost:9292> for result.
-<br/>
+
 Replace nothing.ru with "calc\_time.ru" name and navigate the same URL.
 Then run "rackup method\_override.ru" and goto <http://localhost:9292?_method=post> for result.
 And replace "post" with "put" and "delete" to see result.
+
+<br/>
 
 Next is infinity.rb, a simple sinatra program can process 3 URLs.
 
@@ -24,6 +26,8 @@ Next is infinity.rb, a simple sinatra program can process 3 URLs.
 Before start, run "gem install sinatra" to install sinatra
 Then run "ruby infinity.rb" and access above urls to see output.
   
+<br/>
+
 Last is sinatra+sequel program, a Create-Update-Read-Delete application.
 
 Before start, run "bundle install" to install sequel and amagalite database driver.
