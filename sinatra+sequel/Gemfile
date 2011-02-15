@@ -3,3 +3,9 @@ gem "sinatra"
 gem "sequel"
 gem "amalgalite"
 gem "haml"
+
+group :development, :test do
+  gem 'rspec'
+  gem 'steak'
+  gem 'capybara'
+end

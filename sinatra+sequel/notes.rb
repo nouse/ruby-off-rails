@@ -9,7 +9,7 @@ helpers do
 end
 
 configure do
-  DB = Sequel.connect('amalgalite://notes.db')
+  DB = Sequel.connect("amalgalite://db/notes-#{settings.environment}.sqlite")
   DB.create_table?(:notes) do
     primary_key :id
     text :title
