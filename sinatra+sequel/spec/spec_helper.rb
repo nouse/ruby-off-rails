@@ -1,25 +1,29 @@
-require 'rubygems'
-require 'sinatra'
-
 SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
 $LOAD_PATH << SINATRA_ROOT
-require 'notes'
-#Sinatra::Application.app_file = app_file
-
-require 'capybara'
 require 'capybara/dsl'
+require 'faker'
 require 'steak'
+require 'sinatra'
+require 'sequel'
 
+DB = Sequel.amalgalite
 Capybara.app = Sinatra::Application
 
-# set test environment
 set :environment, :test
-set :run, false
-set :raise_errors, true
-set :logging, false
 set :root, SINATRA_ROOT
+
+require 'notes'
 
 RSpec.configure do |config|
   config.include Capybara
+  config.include TextHelper
   config.mock_with :rspec
+end
+
+def generate_description
+  Faker::Lorem.sentence
+end
+
+def generate_content
+  Faker::Lorem.paragraph
 end

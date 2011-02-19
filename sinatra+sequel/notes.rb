@@ -2,14 +2,19 @@ require 'sinatra'
 require 'sequel'
 require 'haml'
 
-helpers do
+module TextHelper
   def h(string)
     Rack::Utils.escape_html(string)
   end
+  def truncate(text, length=20)
+    max_length = length.abs
+    text.length > max_length ? "#{text[0..max_length]}..." : text
+  end
 end
 
+helpers TextHelper
+
 configure do
-  DB = Sequel.connect("amalgalite://db/notes-#{settings.environment}.sqlite")
   DB.create_table?(:notes) do
     primary_key :id
     text :title

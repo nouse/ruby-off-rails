@@ -3,14 +3,15 @@
     %thead
       %tr 
         %td title
-        %td &nbsp;
+        %td content
         %td &nbsp;
     %tbody
       - @notes.each do |note|
         %tr
-          %td= h note.title
+          %td
+            %a{:href => "/notes/#{note.id}"}= h note.title
           %td 
-            %a{:href => "/notes/#{note.id}"} show
+            = truncate( h note.body )
           %td
             %a{:href => "/notes/#{note.id}/edit"} edit
   %a{:href => '/notes/new'} new note

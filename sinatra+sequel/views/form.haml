@@ -1,9 +1,11 @@
-%label{:for => "title"} Description
+%label{:for => "title"}
+  Description
+  %br
+  %input{:name => "title", :value => h(@note.title), :size => 50}
 %br
-%input{:name => "title", :value => h(@note.title), :size => 50}
-%br
-%label{:for => "body"} Content
-%br
-%textarea{:name => "body", :cols => 30, :rows => 10}= @note.body
+%label{:for => "body"}
+  Content
+  %br
+  %textarea{:name => "body", :cols => 30, :rows => 10}= @note.body
 %br
 %input{:type => "submit", :value => "Submit"}
