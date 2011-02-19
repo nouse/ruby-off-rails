@@ -5,6 +5,7 @@ require 'faker'
 require 'steak'
 require 'sinatra'
 require 'sequel'
+require 'spawn'
 
 DB = Sequel.amalgalite
 Capybara.app = Sinatra::Application
@@ -26,4 +27,10 @@ end
 
 def generate_content
   Faker::Lorem.paragraph
+end
+
+Note.extend Spawn
+Note.spawner do |user|
+  user.title = generate_description
+  user.body  = generate_content
 end

@@ -3,11 +3,11 @@ gem "sinatra"
 gem "sequel"
 gem "amalgalite"
 gem "haml"
-gem "faker"
 
 group :development, :test do
-  gem 'cutest'
   gem 'rspec'
   gem 'steak'
   gem 'capybara'
+  gem "faker"
+  gem 'spawn'
 end
