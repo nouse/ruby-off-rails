@@ -26,8 +26,10 @@ feature 'Notes' do
     }.should change(Note, :count).by(1)
 
     current_path.should == '/notes'
-    page.should have_content description
-    page.should have_content truncate(h content)
+    page.should satisfy {
+      have_content description
+      have_content truncate(h content)
+    }
   end
 
   scenario 'update' do
@@ -41,10 +43,12 @@ feature 'Notes' do
     }.should_not change(Note, :count)
 
     current_path.should == "/notes/#{note.id}"
-    page.should_not have_content note.title
-    page.should_not have_content note.body
-    page.should have_content description
-    page.should have_content content
+    page.should satisfy {
+      !have_content note.title
+      !have_content note.body
+      have_content description
+      have_content content
+    }
   end
 
   scenario 'destroy' do
