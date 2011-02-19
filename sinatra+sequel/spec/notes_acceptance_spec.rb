@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature 'Notes' do
-  before do
+  background do
     Note.delete
     @description = generate_description
     @content = generate_content
