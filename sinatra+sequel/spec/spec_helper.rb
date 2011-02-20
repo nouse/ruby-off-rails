@@ -1,5 +1,5 @@
-SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
-$LOAD_PATH << SINATRA_ROOT
+require 'spork'
+
 require 'capybara/dsl'
 require 'faker'
 require 'steak'
@@ -7,11 +7,15 @@ require 'sinatra'
 require 'sequel'
 require 'spawn'
 
-DB = Sequel.amalgalite
-Capybara.app = Sinatra::Application
+Spork.prefork do
+  SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
+  $LOAD_PATH << SINATRA_ROOT
+  DB = Sequel.amalgalite
+  set :environment, :test
+  set :root, SINATRA_ROOT
+end
 
-set :environment, :test
-set :root, SINATRA_ROOT
+Capybara.app = Sinatra::Application
 
 require 'notes'
 

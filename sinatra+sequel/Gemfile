@@ -10,4 +10,5 @@ group :development, :test do
   gem 'capybara'
   gem "faker"
   gem 'spawn'
+  gem 'spork', '~> 0.9.0.rc'
 end
