@@ -5,10 +5,10 @@ gem "amalgalite"
 gem "haml"
 
 group :development, :test do
-  gem 'rspec'
-  gem 'steak'
   gem 'capybara'
   gem "faker"
+  gem 'rspec'
   gem 'spawn'
   gem 'spork', '~> 0.9.0.rc'
+  gem 'steak'
 end

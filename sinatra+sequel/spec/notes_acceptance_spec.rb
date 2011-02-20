@@ -4,6 +4,7 @@ feature 'Notes' do
 
   let(:description) { generate_description }
   let(:content) { generate_content }
+  subject { page }
 
   background do
     Note.delete
@@ -25,10 +26,8 @@ feature 'Notes' do
     }.to change(Note, :count).by(1)
 
     current_path.should == '/notes'
-    page.should satisfy {
-      have_content description
-      have_content truncate(h content)
-    }
+    should have_content description
+    should have_content truncate(h content)
   end
 
   scenario 'update' do
@@ -42,12 +41,10 @@ feature 'Notes' do
     }.to_not change(Note, :count)
 
     current_path.should == "/notes/#{note.id}"
-    page.should satisfy {
-      !have_content note.title
-      !have_content note.body
-      have_content description
-      have_content content
-    }
+    should_not have_content note.title
+    should_not have_content note.body
+    should have_content description
+    should have_content content
   end
 
   scenario 'destroy' do

@@ -1,28 +1,33 @@
 require 'spork'
-
-require 'capybara/dsl'
-require 'faker'
 require 'steak'
+require 'capybara/rspec'
+require 'faker'
 require 'sinatra'
 require 'sequel'
 require 'spawn'
 
 Spork.prefork do
+
   SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
   $LOAD_PATH << SINATRA_ROOT
   DB = Sequel.amalgalite
   set :environment, :test
   set :root, SINATRA_ROOT
+  Capybara.app = Sinatra::Application
 end
 
-Capybara.app = Sinatra::Application
+Spork.each_run do
+  require 'notes'
 
-require 'notes'
+  RSpec.configure do |config|
+    config.include TextHelper
+  end
 
-RSpec.configure do |config|
-  config.include Capybara
-  config.include TextHelper
-  config.mock_with :rspec
+  Note.extend Spawn
+  Note.spawner do |user|
+    user.title = generate_description
+    user.body  = generate_content
+  end
 end
 
 def generate_description
@@ -31,10 +36,4 @@ end
 
 def generate_content
   Faker::Lorem.paragraph
-end
-
-Note.extend Spawn
-Note.spawner do |user|
-  user.title = generate_description
-  user.body  = generate_content
 end
