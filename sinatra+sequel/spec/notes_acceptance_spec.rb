@@ -7,7 +7,6 @@ feature 'Notes' do
 
   background do
     Note.delete
-    @content = generate_content
   end
 
   scenario 'index' do
@@ -23,7 +22,7 @@ feature 'Notes' do
       fill_in 'Description', :with => description
       fill_in 'Content', :with => content
       click_button 'Create'
-    }.should change(Note, :count).by(1)
+    }.to change(Note, :count).by(1)
 
     current_path.should == '/notes'
     page.should satisfy {
@@ -40,7 +39,7 @@ feature 'Notes' do
       fill_in 'Description', :with => description
       fill_in 'Content', :with => content
       click_button 'Update'
-    }.should_not change(Note, :count)
+    }.to_not change(Note, :count)
 
     current_path.should == "/notes/#{note.id}"
     page.should satisfy {
@@ -57,7 +56,7 @@ feature 'Notes' do
     expect {
       visit "/notes/#{note.id}/edit"
       click_button 'Remove'
-    }.should change(Note, :count).by(-1)
+    }.to change(Note, :count).by(-1)
 
     current_path.should == "/notes"
   end
