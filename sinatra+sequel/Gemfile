@@ -9,6 +9,5 @@ group :development, :test do
   gem "faker"
   gem 'rspec'
   gem 'spawn'
-  gem 'spork', '~> 0.9.0.rc'
   gem 'steak'
 end
