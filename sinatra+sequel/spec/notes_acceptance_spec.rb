@@ -6,10 +6,6 @@ feature 'Notes' do
   let(:content) { generate_content }
   subject { page }
 
-  background do
-    Note.delete
-  end
-
   scenario 'index' do
     visit '/'
     page.should have_content 'title'
