@@ -19,9 +19,9 @@ Capybara.app = Sinatra::Application
 require SINATRA_ROOT+'/notes'
 
 Note.extend Spawn
-Note.spawner do |user|
-  user.title = generate_description
-  user.body  = generate_content
+Note.spawner do |note|
+  note.title = generate_description
+  note.body  = generate_content
 end
 
 def generate_description
