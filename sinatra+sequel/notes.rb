@@ -1,18 +1,12 @@
 require 'sinatra'
 require 'sequel'
-require 'haml'
+require 'slim'
+$LOAD_PATH << File.dirname(__FILE__)+"/lib"
+require 'text_helpers'
 
-module TextHelper
-  def h(string)
-    Rack::Utils.escape_html(string)
-  end
-  def truncate(text, length=20)
-    max_length = length.abs
-    text.length > max_length ? "#{text[0..max_length]}..." : text
-  end
+configure :development do
+  set :slim, :pretty => true
 end
-
-helpers TextHelper
 
 configure do
   DB.create_table?(:notes) do
@@ -25,29 +19,31 @@ configure do
   end
 end
 
+helpers TextHelpers
+
 get '/' do
   redirect '/notes'
 end
 
 get '/notes' do
   @notes = Note.all
-  haml :index
+  slim :index
 end
 
 get '/notes/:id' do |id|
   pass if id == 'new'
   @note = Note[:id => id]
-  haml(:show)
+  slim(:show)
 end
 
 get '/notes/new' do
   @note = Note.new
-  haml(:new)
+  slim(:new)
 end
 
 get '/notes/:id/edit' do |id|
   @note = Note[:id => id]
-  haml(:edit)
+  slim(:edit)
 end
 
 put '/notes/:id' do |id|

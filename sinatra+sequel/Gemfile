@@ -1,12 +1,12 @@
 source "http://rubygems.org"
-gem "sinatra"
+gem "sinatra", "1.2.0.d"
 gem "sequel"
 gem "amalgalite"
-gem "haml"
+gem "slim"
 
 group :development, :test do
   gem 'capybara'
-  gem "faker"
+  gem "ffaker"
   gem 'rspec'
   gem 'spawn'
   gem 'steak'

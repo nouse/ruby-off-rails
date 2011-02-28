@@ -27,7 +27,7 @@ feature 'Notes' do
 
     current_path.should == '/notes'
     should have_content description
-    should have_content truncate(h content)
+    should have_content truncate(content)
   end
 
   scenario 'update' do

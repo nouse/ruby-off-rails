@@ -19,13 +19,10 @@ GEM
       ffi (~> 0.6.3)
     culerity (0.2.15)
     diff-lcs (1.1.2)
-    faker (0.9.5)
-      i18n (~> 0.4)
     fastercsv (1.5.4)
+    ffaker (1.3.0)
     ffi (0.6.3)
       rake (>= 0.8.7)
-    haml (3.0.25)
-    i18n (0.5.0)
     json_pure (1.5.1)
     mime-types (1.16)
     nokogiri (1.4.4)
@@ -48,12 +45,16 @@ GEM
       json_pure
       rubyzip
     sequel (3.20.0)
-    sinatra (1.1.3)
+    sinatra (1.2.0.d)
       rack (~> 1.1)
+      tilt (>= 1.2.2, < 2.0)
+    slim (0.9.0)
+      temple (~> 0.1.7)
       tilt (~> 1.2)
     spawn (0.1.4)
     steak (1.1.0)
       rspec (>= 1.3)
+    temple (0.1.7)
     tilt (1.2.2)
     xpath (0.1.3)
       nokogiri (~> 1.3)
@@ -64,10 +65,10 @@ PLATFORMS
 DEPENDENCIES
   amalgalite
   capybara
-  faker
-  haml
+  ffaker
   rspec
   sequel
-  sinatra
+  sinatra (= 1.2.0.d)
+  slim
   spawn
   steak

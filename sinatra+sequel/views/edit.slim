@@ -1,0 +1,8 @@
+form action="/notes/#{@note.id}" method="post"
+  input type="hidden" name="_method" value="put"
+  == slim :fields
+  input type="submit" value="Update"
+form action="/notes/#{@note.id}" method="post"
+  input type="hidden" name="_method" value="delete"
+  input type="submit" value='Remove'
+== slim :back_to_top

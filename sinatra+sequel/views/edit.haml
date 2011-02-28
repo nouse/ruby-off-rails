@@ -1,8 +1,0 @@
-%form{:action => "/notes/#{@note.id}", :method => "post"}
-  %input{:type => "hidden", :name => "_method", :value => "put"}
-  = haml :fields
-  %input{:type => "submit", :value => "Update"}
-%form{:action => "/notes/#{@note.id}", :method => "post"}
-  %input{:type => "hidden", :name => "_method", :value => "delete"}
-  %input{:type => "submit", :value => 'Remove'}/
-= haml :back_to_top
