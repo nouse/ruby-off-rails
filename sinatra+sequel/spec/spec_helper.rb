@@ -3,7 +3,7 @@ require 'capybara/rspec'
 require 'ffaker'
 require 'sinatra'
 require 'sequel'
-require 'spawn'
+require 'machinist/sequel'
 require 'text_helpers'
 
 RSpec.configure do |config|
@@ -18,10 +18,9 @@ Capybara.app = Sinatra::Application
 
 require SINATRA_ROOT+'/notes'
 
-Note.extend Spawn
-Note.spawner do |note|
-  note.title = generate_description
-  note.body  = generate_content
+Note.blueprint do
+  title { generate_description }
+  body  { generate_content }
 end
 
 def generate_description

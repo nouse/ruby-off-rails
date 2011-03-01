@@ -27,7 +27,7 @@ feature 'Notes' do
   end
 
   scenario 'update' do
-    note = Note.spawn
+    note = Note.make
 
     expect {
       visit "/notes/#{note.id}/edit"
@@ -44,7 +44,7 @@ feature 'Notes' do
   end
 
   scenario 'destroy' do
-    note = Note.spawn
+    note = Note.make
 
     expect {
       visit "/notes/#{note.id}/edit"
