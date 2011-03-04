@@ -20,7 +20,7 @@ GEM
     culerity (0.2.15)
     diff-lcs (1.1.2)
     fastercsv (1.5.4)
-    ffaker (1.3.0)
+    ffaker (1.4.0)
     ffi (0.6.3)
       rake (>= 0.8.7)
     json_pure (1.5.1)
@@ -45,8 +45,8 @@ GEM
       ffi (~> 0.6.3)
       json_pure
       rubyzip
-    sequel (3.20.0)
-    sinatra (1.2.0.d)
+    sequel (3.21.0)
+    sinatra (1.2.0)
       rack (~> 1.1)
       tilt (>= 1.2.2, < 2.0)
     slim (0.9.0)
@@ -69,6 +69,6 @@ DEPENDENCIES
   machinist (~> 1.0.6)
   rspec
   sequel
-  sinatra (= 1.2.0.d)
+  sinatra (~> 1.2.0)
   slim
   steak

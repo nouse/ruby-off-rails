@@ -8,14 +8,14 @@ feature 'Notes' do
 
   scenario 'index' do
     visit '/'
-    page.should have_content 'title'
+    should have_content 'title'
     click_link 'new note'
     current_path.should == '/notes/new'
   end
 
   scenario 'create' do
+    visit '/notes/new'
     expect {
-      visit '/notes/new'
       fill_in 'Description', :with => description
       fill_in 'Content', :with => content
       click_button 'Create'
@@ -28,9 +28,12 @@ feature 'Notes' do
 
   scenario 'update' do
     note = Note.make
+    visit "/notes/#{note.id}/edit"
+
+    page.find_field('Description').value.should == note.title
+    should have_content note.body
 
     expect {
-      visit "/notes/#{note.id}/edit"
       fill_in 'Description', :with => description
       fill_in 'Content', :with => content
       click_button 'Update'
@@ -45,9 +48,9 @@ feature 'Notes' do
 
   scenario 'destroy' do
     note = Note.make
+    visit "/notes/#{note.id}/edit"
 
     expect {
-      visit "/notes/#{note.id}/edit"
       click_button 'Remove'
     }.to change(Note, :count).by(-1)
 
