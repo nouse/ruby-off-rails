@@ -48,12 +48,12 @@ end
 
 put '/notes/:id' do |id|
   note = Note[:id => id]
-  note.update(:title => params[:title], :body => params[:body])
+  note.update params[:note]
   redirect "/notes/#{id}"
 end
 
 post '/notes' do
-  @note = Note.create(:title => params[:title], :body => params[:body])
+  @note = Note.create params[:note]
   redirect "/notes"
 end
 
