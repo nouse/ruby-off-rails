@@ -52,8 +52,6 @@ GEM
     slim (0.9.0)
       temple (~> 0.1.7)
       tilt (~> 1.2)
-    steak (1.1.0)
-      rspec (>= 1.3)
     temple (0.1.7)
     tilt (1.2.2)
     xpath (0.1.3)
@@ -71,4 +69,3 @@ DEPENDENCIES
   sequel
   sinatra (~> 1.2.0)
   slim
-  steak

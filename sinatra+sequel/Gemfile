@@ -9,5 +9,4 @@ group :development, :test do
   gem "ffaker"
   gem 'rspec'
   gem 'machinist', "~>1.0.6"
-  gem 'steak'
 end

@@ -1,4 +1,3 @@
-require 'steak'
 require 'capybara/rspec'
 require 'ffaker'
 require 'sinatra'
@@ -7,7 +6,8 @@ require 'machinist/sequel'
 require 'text_helpers'
 
 RSpec.configure do |config|
-  config.include TextHelpers
+  config.include TextHelpers, :type => :request
+  config.include TextHelpers, :type => :acceptance
 end
 
 SINATRA_ROOT = File.dirname(__FILE__)+'/..' 

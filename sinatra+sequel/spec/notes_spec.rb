@@ -1,19 +1,21 @@
 require 'spec_helper'
 
-feature 'Notes' do
+describe 'Notes', %q{
+  should implement CRUD functions
+}, :type => :acceptance do
 
   let(:description) { generate_description }
   let(:content) { generate_content }
   subject { page }
 
-  scenario 'index' do
+  it 'should show index page correctly' do
     visit '/'
     should have_content 'title'
     click_link 'new note'
     current_path.should == '/notes/new'
   end
 
-  scenario 'create' do
+  it 'should create notes correctly' do
     visit '/notes/new'
     expect {
       fill_in 'Description', :with => description
@@ -26,7 +28,7 @@ feature 'Notes' do
     should have_content truncate(content)
   end
 
-  scenario 'update' do
+  it 'should update notes correctly' do
     note = Note.make
     visit "/notes/#{note.id}/edit"
 
@@ -46,7 +48,7 @@ feature 'Notes' do
     should have_content content
   end
 
-  scenario 'destroy' do
+  it 'should delete notes correctly' do
     note = Note.make
     visit "/notes/#{note.id}/edit"
 
