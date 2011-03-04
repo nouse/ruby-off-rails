@@ -30,7 +30,7 @@ feature 'Notes' do
     note = Note.make
     visit "/notes/#{note.id}/edit"
 
-    page.find_field('Description').value.should == note.title
+    should have_field('Description', :with => note.title)
     should have_content note.body
 
     expect {
