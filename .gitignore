@@ -1,3 +1,4 @@
 *.sqlite
 *.swp
+Gemfile.lock
 .rvmrc
