@@ -1,8 +1,10 @@
-form action="/notes/#{@note.id}" method="post"
+- @forme.form do |f|
+  == f.open :action => "/notes/#{f.obj.id}", :method => 'post'
   input type="hidden" name="_method" value="put"
-  == slim :fields
+  == f.input :title, :label => 'Description'
+  == f.input :body, :as => :textarea, :label => 'Content'
   input type="submit" value="Update"
-form action="/notes/#{@note.id}" method="post"
+form action="/notes/#{@forme.obj.id}" method="post"
   input type="hidden" name="_method" value="delete"
   input type="submit" value='Remove'
 == slim :back_to_top

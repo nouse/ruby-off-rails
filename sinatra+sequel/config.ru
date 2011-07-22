@@ -1,7 +1,7 @@
 require 'bundler/setup'
 
 require 'sequel'
-DB = Sequel.connect("amalgalite://notes.sqlite")
+DB = Sequel.connect("postgres:///notes_dev")
 
 require './notes'
 run Sinatra::Application

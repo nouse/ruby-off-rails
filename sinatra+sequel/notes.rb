@@ -1,8 +1,10 @@
 require 'sinatra'
 require 'sequel'
 require 'slim'
+require 'forme'
 $LOAD_PATH << File.dirname(__FILE__)+"/lib"
 require 'text_helpers'
+require 'forme/sinatra'
 
 configure :development do
   set :slim, :pretty => true
@@ -17,6 +19,8 @@ configure do
 
   class Note < Sequel::Model
   end
+  Note.plugin :prepared_statements_safe
+  Note.plugin :forme
 end
 
 helpers TextHelpers
@@ -37,12 +41,12 @@ get '/notes/:id' do |id|
 end
 
 get '/notes/new' do
-  @note = Note.new
+  @forme = Forme::Form.new(Note.new)
   slim(:new)
 end
 
 get '/notes/:id/edit' do |id|
-  @note = Note[:id => id]
+  @forme = Forme::Form.new Note[:id => id]
   slim(:edit)
 end
 

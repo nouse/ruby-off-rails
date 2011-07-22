@@ -1,4 +1,7 @@
-form action="/notes" method="post"
-  == slim :fields
+- @forme.form do |f|
+  == f.open :action => '/notes', :method => 'post'
+  == f.input :title, :label => 'Description'
+  == f.input :body, :as => :textarea, :label => 'Content'
   input type="submit" value="Create"
+  == f.close
 == slim :back_to_top

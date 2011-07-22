@@ -4,6 +4,7 @@ require 'sinatra'
 require 'sequel'
 require 'machinist/sequel'
 require 'text_helpers'
+require 'logger'
 
 RSpec.configure do |config|
   config.include TextHelpers, :type => :request
@@ -11,7 +12,7 @@ RSpec.configure do |config|
 end
 
 SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
-DB = Sequel.amalgalite
+DB = Sequel.connect('postgres:///notes_test')
 set :environment, :test
 set :root, SINATRA_ROOT
 Capybara.app = Sinatra::Application
