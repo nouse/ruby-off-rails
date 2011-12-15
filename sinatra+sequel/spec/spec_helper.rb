@@ -9,6 +9,10 @@ require 'logger'
 RSpec.configure do |config|
   config.include TextHelpers, :type => :request
   config.include TextHelpers, :type => :acceptance
+
+  config.around(:each) do |example|
+    DB.transaction { example.run; raise Sequel::Rollback }
+  end
 end
 
 SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
