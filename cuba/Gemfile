@@ -1,19 +1,16 @@
 source "http://ruby.taobao.org"
 
 gem "cuba"
-gem "cuba-contrib"
-gem "mote"
 gem "slim"
-gem "pg"
 gem "tilt"
-gem "sequel"
-gem "sequel_pg"
-gem "shotgun"
-gem "unicorn"
+gem "ohm"
+gem "hiredis"
+
 group :development, :test do
   gem 'capybara'
   gem "ffaker"
   gem 'rspec'
   gem 'machinist', "~>1.0.6"
   gem 'unicorn'
+  gem "shotgun"
 end

@@ -1,22 +1,18 @@
 require 'capybara/rspec'
 require 'ffaker'
-require 'sequel'
-require 'machinist/sequel'
+require 'ohm'
+require 'machinist/object'
 require 'text_helpers'
-require 'logger'
 require 'cuba'
+
+Ohm.connect :db => 1
 
 RSpec.configure do |config|
   config.include TextHelpers, :type => :request
   config.include TextHelpers, :type => :acceptance
-
-  config.around(:each) do |example|
-    DB.transaction { example.run; raise Sequel::Rollback }
-  end
 end
 
 CUBA_ROOT = File.dirname(__FILE__)+'/..' 
-DB = Sequel.connect('postgres:///notes_test')
 Capybara.app = Cuba
 
 require CUBA_ROOT+'/app'

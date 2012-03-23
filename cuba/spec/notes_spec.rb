@@ -30,6 +30,7 @@ describe 'Notes', %q{
 
   it 'should update notes correctly' do
     note = Note.make
+    note.save
     visit "/notes/#{note.id}/edit"
 
     should have_field('Description', :with => note.title)
@@ -50,6 +51,7 @@ describe 'Notes', %q{
 
   it 'should delete notes correctly' do
     note = Note.make
+    note.save
     visit "/notes/#{note.id}/edit"
 
     expect {

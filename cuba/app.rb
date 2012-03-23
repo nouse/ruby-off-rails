@@ -2,8 +2,15 @@ require 'cuba'
 require 'cuba/render'
 require 'slim'
 
-class Note < Sequel::Model
-  plugin :prepared_statements_safe
+class Note < Ohm::Model
+  attribute :title
+  attribute :body
+
+  class << self
+    def count
+      all.size
+    end
+  end
 end
 
 Cuba.plugin Cuba::Render
@@ -17,7 +24,7 @@ Cuba.define do
   end
 
   on "notes/:id" do |id|
-    note = Note[id: id]
+    note = Note[id]
     on get do
       on root do
         res.write view("show", note: note)
@@ -34,7 +41,7 @@ Cuba.define do
     end
       
     on delete do
-      note.destroy
+      note.delete
       res.redirect "/notes"
     end
   end
