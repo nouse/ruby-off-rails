@@ -1,0 +1,13 @@
+form action='/notes' method='post'
+  label
+    | Description
+    br
+    input name="note[title]"
+  br
+  label
+    | Content
+    br
+    textarea name="note[body]"
+  br
+  input type="submit" value="Create"
+== partial "back_to_top"

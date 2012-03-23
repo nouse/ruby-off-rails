@@ -1,0 +1,18 @@
+form action="/notes/#{note.id}" method="post"
+  input type="hidden" name="_method" value="put"
+  label
+    | Description
+    br
+    input name="note[title]" value=note.title
+    br
+  label
+    | Content
+    br
+    textarea name="note[body]"
+      = note.body
+    br
+  input type="submit" value="Update"
+form action="/notes/#{note.id}" method="post"
+  input type="hidden" name="_method" value="delete"
+  input type="submit" value='Remove'
+== partial :back_to_top

@@ -1,0 +1,17 @@
+div.body
+  table width="100%" style="border-collapse: collapse" border=(1)
+    thead
+      tr
+        td title
+        td content
+        td &nbsp;
+    tbody
+      - notes.each do |note|
+        tr
+          td
+            a href="/notes/#{note.id}" = note.title
+          td
+            = truncate( note.body )
+          td
+            a href="/notes/#{note.id}/edit" Edit
+  a href='/notes/new' new note
