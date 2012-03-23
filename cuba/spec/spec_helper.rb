@@ -10,6 +10,10 @@ Ohm.connect :db => 1
 RSpec.configure do |config|
   config.include TextHelpers, :type => :request
   config.include TextHelpers, :type => :acceptance
+
+  config.before(:each) do |example|
+    Ohm.flush
+  end
 end
 
 CUBA_ROOT = File.dirname(__FILE__)+'/..' 
