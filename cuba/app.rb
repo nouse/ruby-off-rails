@@ -18,6 +18,9 @@ Cuba.plugin TextHelpers
 Cuba.use Rack::MethodOverride
 
 Cuba.settings[:template_engine] = "slim"
+if ENV["RACK_ENV"] == "development"
+  Slim::Engine.set_default_options :pretty => true
+end
 Cuba.define do
   on get, "notes/new" do
     res.write view("new")
