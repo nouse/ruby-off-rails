@@ -6,11 +6,6 @@ class Note < Ohm::Model
   attribute :title
   attribute :body
 
-  class << self
-    def count
-      all.size
-    end
-  end
 end
 
 Cuba.plugin Cuba::Render

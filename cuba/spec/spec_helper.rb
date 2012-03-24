@@ -21,6 +21,12 @@ Capybara.app = Cuba
 
 require CUBA_ROOT+'/app'
 
+Note.instance_eval do
+  def count
+    all.size
+  end
+end
+
 Note.blueprint do
   title { generate_description }
   body  { generate_content }
