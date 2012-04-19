@@ -17,6 +17,7 @@ end
 
 SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
 DB = Sequel.connect('postgres:///notes_test')
+require 'note'
 set :environment, :test
 set :root, SINATRA_ROOT
 Capybara.app = Sinatra::Application

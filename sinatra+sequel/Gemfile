@@ -8,7 +8,5 @@ gem "forme"
 group :development, :test do
   gem 'capybara'
   gem "ffaker"
-  gem 'rspec'
   gem 'machinist', "~>1.0.6"
-  gem 'unicorn'
 end

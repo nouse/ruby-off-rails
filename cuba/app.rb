@@ -10,7 +10,6 @@ end
 
 Cuba.plugin Cuba::Render
 Cuba.plugin TextHelpers
-Cuba.use Rack::MethodOverride
 
 Cuba.settings[:template_engine] = "slim"
 if ENV["RACK_ENV"] == "development"

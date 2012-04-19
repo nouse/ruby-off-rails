@@ -3,12 +3,12 @@ require 'ffaker'
 require 'ohm'
 require 'machinist/object'
 require 'text_helpers'
+require 'custom_method_override'
 require 'cuba'
 
 Ohm.connect :db => 1
 
 RSpec.configure do |config|
-  config.include TextHelpers, :type => :request
   config.include TextHelpers, :type => :acceptance
 
   config.before(:each) do |example|
@@ -17,6 +17,7 @@ RSpec.configure do |config|
 end
 
 CUBA_ROOT = File.dirname(__FILE__)+'/..' 
+Cuba.use Rack::CustomMethodOverride
 Capybara.app = Cuba
 
 require CUBA_ROOT+'/app'
