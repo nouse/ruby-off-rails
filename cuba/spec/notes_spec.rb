@@ -23,7 +23,7 @@ describe 'Notes', %q{
       click_button 'Create'
     }.to change(Note, :count).by(1)
 
-    current_path.should == '/notes'
+    current_path.should eq '/notes'
     should have_content description
     should have_content truncate(content)
   end
@@ -42,7 +42,7 @@ describe 'Notes', %q{
       click_button 'Update'
     }.to_not change(Note, :count)
 
-    current_path.should == "/notes/#{note.id}"
+    current_path.should eq "/notes/#{note.id}"
     should_not have_content note.title
     should_not have_content note.body
     should have_content description
