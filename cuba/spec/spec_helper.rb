@@ -6,7 +6,7 @@ require 'text_helpers'
 require 'custom_method_override'
 require 'cuba'
 
-Ohm.connect :db => 1
+Ohm.connect :db => 1, :driver => :hiredis
 
 RSpec.configure do |config|
   config.include TextHelpers, :type => :acceptance
