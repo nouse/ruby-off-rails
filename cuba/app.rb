@@ -11,10 +11,12 @@ end
 Cuba.plugin Cuba::Render
 Cuba.plugin TextHelpers
 
-Cuba.settings[:template_engine] = "slim"
+Cuba.settings[:render][:template_engine] = "slim"
+
 if ENV["RACK_ENV"] == "development"
   Slim::Engine.set_default_options :pretty => true
 end
+
 Cuba.define do
   on get, "notes/new" do
     res.write view("new")
@@ -36,12 +38,13 @@ Cuba.define do
       note.update attrs
       res.redirect "/notes/#{note.id}"
     end
-      
+
     on delete do
       note.delete
       res.redirect "/notes"
     end
   end
+
   on get do
     on root do
       res.redirect "/notes"
