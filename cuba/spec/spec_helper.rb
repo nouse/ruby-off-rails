@@ -1,7 +1,7 @@
 require 'capybara/rspec'
 require 'ffaker'
 require 'ohm'
-require 'machinist/object'
+require 'fabrication'
 require 'text_helpers'
 require 'custom_method_override'
 require 'cuba'
@@ -9,7 +9,7 @@ require 'cuba'
 Ohm.connect :db => 1, :driver => :hiredis
 
 RSpec.configure do |config|
-  config.include TextHelpers, :type => :acceptance
+  config.include TextHelpers, :type => :feature
 
   config.before(:each) do |example|
     Ohm.flush
@@ -28,7 +28,7 @@ Note.instance_eval do
   end
 end
 
-Note.blueprint do
+Fabricator(:note) do
   title { generate_description }
   body  { generate_content }
 end

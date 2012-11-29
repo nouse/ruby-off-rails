@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Notes', %q{
   should implement CRUD functions
-}, :type => :acceptance do
+}, :type => :feature do
 
   let(:description) { generate_description }
   let(:content) { generate_content }
@@ -29,7 +29,7 @@ describe 'Notes', %q{
   end
 
   it 'should update notes correctly' do
-    note = Note.make
+    note = Fabricate(:note)
     visit "/notes/#{note.id}/edit"
 
     should have_field('Description', :with => note.title)
@@ -49,7 +49,7 @@ describe 'Notes', %q{
   end
 
   it 'should delete notes correctly' do
-    note = Note.make
+    note = Fabricate(:note)
     visit "/notes/#{note.id}/edit"
 
     expect {

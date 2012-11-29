@@ -2,13 +2,11 @@ require 'capybara/rspec'
 require 'ffaker'
 require 'sinatra'
 require 'sequel'
-require 'machinist/sequel'
+require 'fabrication'
 require 'text_helpers'
-require 'logger'
 
 RSpec.configure do |config|
-  config.include TextHelpers, :type => :request
-  config.include TextHelpers, :type => :acceptance
+  config.include TextHelpers, :type => :feature
 
   config.around(:each) do |example|
     DB.transaction { example.run; raise Sequel::Rollback }
@@ -24,7 +22,7 @@ Capybara.app = Sinatra::Application
 
 require SINATRA_ROOT+'/notes'
 
-Note.blueprint do
+Fabricator(:note) do
   title { generate_description }
   body  { generate_content }
 end

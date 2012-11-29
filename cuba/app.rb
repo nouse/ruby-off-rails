@@ -5,7 +5,6 @@ require 'slim'
 class Note < Ohm::Model
   attribute :title
   attribute :body
-
 end
 
 Cuba.plugin Cuba::Render
