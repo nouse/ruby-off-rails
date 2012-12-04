@@ -10,14 +10,11 @@ gem "rack", "1.4.1"
 
 group :development, :test do
   gem 'capybara'
+  gem 'cutest'
   gem "ffaker"
   gem 'fabrication'
   gem "nokogiri", "1.5.5"
   gem "rack-test", "0.6.1"
-  gem "rspec", "2.10.0"
-  gem "rspec-core", "2.10.1"
-  gem "rspec-expectations", "2.10.0"
-  gem "rspec-mocks", "2.10.1"
   gem "addressable", "2.2.8"
   gem "ffi", "1.0.11"
   gem "childprocess", "0.3.3"

@@ -1,21 +1,18 @@
-require 'capybara/rspec'
+require 'capybara/dsl'
 require 'ffaker'
 require 'sinatra'
 require 'sequel'
 require 'fabrication'
-require 'text_helpers'
+require_relative '../lib/text_helpers'
 
-RSpec.configure do |config|
-  config.include TextHelpers, :type => :feature
-
-  config.around(:each) do |example|
-    DB.transaction { example.run; raise Sequel::Rollback }
-  end
+prepare do
+  include TextHelpers
+  include Capybara::DSL
 end
 
-SINATRA_ROOT = File.dirname(__FILE__)+'/..' 
+SINATRA_ROOT = File.dirname(__FILE__)+'/..'
 DB = Sequel.connect('postgres:///notes_test')
-require 'note'
+require_relative '../lib/note'
 set :environment, :test
 set :root, SINATRA_ROOT
 Capybara.app = Sinatra::Application
@@ -33,4 +30,14 @@ end
 
 def generate_content
   Faker::Lorem.paragraph
+end
+
+module Kernel
+  private
+  def db(&block)
+    DB.transaction {
+      yield
+      raise Sequel::Rollback
+    }
+  end
 end
