@@ -9,9 +9,11 @@ require 'cuba'
 Ohm.connect :db => 1, :driver => :hiredis
 
 prepare do
-  include TextHelpers
-
   Ohm.flush
+end
+
+class Cutest::Scope
+  include TextHelpers
 end
 
 CUBA_ROOT = File.dirname(__FILE__)+'/..' 

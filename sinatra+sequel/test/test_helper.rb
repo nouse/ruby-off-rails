@@ -5,7 +5,7 @@ require 'sequel'
 require 'fabrication'
 require_relative '../lib/text_helpers'
 
-prepare do
+class Cutest::Scope
   include TextHelpers
   include Capybara::DSL
 end
