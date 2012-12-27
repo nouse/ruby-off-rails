@@ -1,5 +1,9 @@
-ruby OFF rails
+ruby OFF rails - deprecated
 ==============
+---
+WARNING: This Repository will never update. I will create another showcase repository to use jquery mobile as front end.
+---
+
 This showcase has 3 components:
 
 First is some rack middlewares, including:
