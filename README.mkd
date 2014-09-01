@@ -40,3 +40,4 @@ Then run "ruby notes.rb" and go to <http://localhost:4567/notes> for result.
 Before, a rails metal demo for Rails 2.3 was included. It was removed because
 I want to keep this repo simple and clean.
 In Rails 3.0, you can map a url direct to a Rack middleware, metal is deprecated.
+test
