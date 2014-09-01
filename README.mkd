@@ -29,7 +29,7 @@ Next is infinity.rb, a simple sinatra program can process 3 URLs.
 
 Before start, run "gem install sinatra" to install sinatra
 Then run "ruby infinity.rb" and access above urls to see output.
-  
+
 <br/>
 
 Last is sinatra+sequel program, a Create-Update-Read-Delete application.
@@ -38,5 +38,5 @@ Before start, run "bundle install" to install sequel and amagalite database driv
 Then run "ruby notes.rb" and go to <http://localhost:4567/notes> for result.
 
 Before, a rails metal demo for Rails 2.3 was included. It was removed because
-I want to keep this repo simple and clean. 
+I want to keep this repo simple and clean.
 In Rails 3.0, you can map a url direct to a Rack middleware, metal is deprecated.
