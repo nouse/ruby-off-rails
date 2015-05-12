@@ -1,4 +1,4 @@
-ruby OFF rails - deprecated
+ruby OFF rails
 ==============
 ---
 WARNING: This Repository will never update. I will create another showcase repository to use jquery mobile as front end.
