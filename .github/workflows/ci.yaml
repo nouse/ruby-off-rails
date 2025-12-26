@@ -7,18 +7,10 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-latest
-    container: ubuntu:24.04
     steps:
       - uses: actions/checkout@v6
-      - name: install libyaml
-        run: apt-get update && apt-get install -y libyaml-dev # no sudo inside container
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 4.0.0
-      - name: Install dependencies
-        working-directory: roda+sequel
-        run: |
-          id
-          pwd
-          bundle install
+          bundler-cache: 'true'
