@@ -1,0 +1,19 @@
+name: Ruby
+on:
+  push:
+    branches:
+      - main
+      - master
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    container: ubuntu:24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 4.0.0
+      - name: Install dependencies
+        working-directory: roda+sequel
+        run: bundle install
