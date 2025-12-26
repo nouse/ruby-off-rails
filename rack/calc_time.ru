@@ -4,9 +4,9 @@ class CalcTime
   end
 
   def call(env)
-    now = Time.now
+    now = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     status, headers, body = @app.call(env)
-    string = "<p>Time elapsed: #{Time.now-now}</p>"
+    string = "<p>Time elapsed: #{Process.clock_gettime(Process::CLOCK_MONOTONIC)-now}</p>"
     response = body.collect{|e| e}.unshift(string)
     [status, headers, response]
   end
