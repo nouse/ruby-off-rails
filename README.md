@@ -1,43 +1,14 @@
-ruby OFF rails - deprecated
-==============
----
-WARNING: This Repository will never update. I will create another showcase repository to use jquery mobile as front end.
----
+# Example of Ruby lightweight web frameworks
 
-This showcase has 3 components:
+This project is recently renewed to try Ruby 4.0.
 
-First is some rack middlewares, including:
+## A rack middleware
 
-  - nothing.ru, a rack middleware do nothing
-  - calc\_time.ru, add response time to HTTP body
-  - method\_override.ru, alter HTTP method
+Start a rack app witt puma.
+```shell
+bundle install
+export RUBY_OPTS="--enable=zjit,frozen-string-literal" 
+bundle exec puma rack/calc_time.ru
+```
 
-Before start, execute "gem install rack" to install rack.
-Then run "rackup nothing.ru" and goto <http://localhost:9292> for result.
-
-Replace nothing.ru with "calc\_time.ru" name and navigate the same URL.
-Then run "rackup method\_override.ru" and goto <http://localhost:9292?_method=post> for result.
-And replace "post" with "put" and "delete" to see result.
-
-<br/>
-
-Next is infinity.rb, a simple sinatra program can process 3 URLs.
-
-  - <http://localhost:4567>
-  - <http://localhost:4567/version>
-  - <http://localhost:4567/version/last>
-
-Before start, run "gem install sinatra" to install sinatra
-Then run "ruby infinity.rb" and access above urls to see output.
-
-<br/>
-
-Last is sinatra+sequel program, a Create-Update-Read-Delete application.
-
-Before start, run "bundle install" to install sequel and amagalite database driver.
-Then run "ruby notes.rb" and go to <http://localhost:4567/notes> for result.
-
-Before, a rails metal demo for Rails 2.3 was included. It was removed because
-I want to keep this repo simple and clean.
-In Rails 3.0, you can map a url direct to a Rack middleware, metal is deprecated.
-test
+Then `curl -v http://localhost:9292` to see a response time in the body.
